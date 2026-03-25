@@ -184,9 +184,14 @@ function render(d) {
 
   document.getElementById('temp-stats').innerHTML = `
     <div class="stat">
-      <div class="stat-label">Water Temp</div>
+      <div class="stat-label">Surface Temp</div>
       <div class="stat-value">${d.water_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
       <div class="stat-sub">${d.water_temp_f ? waterTempNote(d.water_temp_f) : 'No data'}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Osage Below Dam</div>
+      <div class="stat-value">${d.osage_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
+      <div class="stat-sub">Deeper lake temp (USGS)</div>
     </div>
     <div class="stat">
       <div class="stat-label">Air Temp</div>
