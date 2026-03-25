@@ -20,22 +20,49 @@ def fetch(url, headers=None):
         return r.read().decode('utf-8', errors='replace')
 
 
+def get_ameren_data():
+    """Scrape Ameren lake reports page for level and surface water temp."""
+    import re as _re
+    html = fetch('https://www.ameren.com/property/lake-of-the-ozarks/reports')
+    pairs = {}
+    for k, v in _re.findall(r'<th[^>]*>\s*(.*?)\s*</th>\s*<td[^>]*>\s*(.*?)\s*</td>', html, _re.DOTALL):
+        k = _re.sub(r'<[^>]+>', '', k).strip()
+        v = _re.sub(r'<[^>]+>', '', v).strip().replace(',', '')
+        if k and v:
+            pairs[k] = v
+    level = None
+    temp = None
+    for k, v in pairs.items():
+        if 'Current Lake level' in k:
+            try: level = float(v)
+            except: pass
+        if 'Surface Water Temp' in k:
+            try: temp = int(v)
+            except: pass
+    return level, temp
+
+
 def get_lake_level():
-    html = fetch('https://ozarks.uslakes.info/Level/')
-    m = re.search(r'font-size:46px[^>]*>(6\d\d\.\d+)<', html)
-    if not m:
-        m = re.search(r'>(6[45]\d\.\d+)<', html)
-    return float(m.group(1)) if m else None
+    level, _ = get_ameren_data()
+    return level
 
 
 def get_water_temp():
-    html = fetch('https://lakemonster.com/lake/MO/Lake-of-the-Ozarks-water-temperature-37')
-    m = re.search(r'[Ww]ater [Tt]emp(?:erature)?[^"]*?:\s*(\d+)°?F', html)
-    if not m:
-        m = re.search(r'"Water Temperature","value":"(\d+)°F"', html)
-    if not m:
-        m = re.search(r'water temperature is (\d+)°F', html)
-    return int(m.group(1)) if m else None
+    _, temp = get_ameren_data()
+    return temp
+
+
+def get_osage_temp():
+    """Fetch Osage River water temp below Bagnell Dam from USGS gauge 06926080."""
+    url = 'https://waterservices.usgs.gov/nwis/iv/?sites=06926080&parameterCd=00010&format=json&siteStatus=active'
+    data = json.loads(fetch(url))
+    for ts in data['value']['timeSeries']:
+        if ts['variable']['variableCode'][0]['value'] == '00010':
+            vals = ts['values'][0]['value']
+            if vals and vals[-1]['value'] != '-999999':
+                c = float(vals[-1]['value'])
+                return round(c * 9/5 + 32, 1)  # C to F
+    return None
 
 
 def get_weather():
@@ -103,6 +130,15 @@ def main():
         errors.append(f'water_temp: {e}')
         print(f'  ERROR: {e}')
 
+    print('Fetching Osage River temp (below dam)...')
+    osage_temp = None
+    try:
+        osage_temp = get_osage_temp()
+        print(f'  Osage temp: {osage_temp}°F')
+    except Exception as e:
+        errors.append(f'osage_temp: {e}')
+        print(f'  ERROR: {e}')
+
     print('Fetching weather...')
     wx = {}
     try:
@@ -119,6 +155,7 @@ def main():
         'full_pool': 660.0,
         'below_full_pool': round(660.0 - level, 2) if level else None,
         'water_temp_f': water_temp,
+        'osage_temp_f': osage_temp,
         **wx,
     }
 
@@ -146,13 +183,14 @@ def main():
         print(f'Git error: {e}')
 
     # Append to Google Sheet
-    if SHEET_ID != '1tiNCTE2YKfpOm1ZIo3MGJyVguKzkvlxedrYTp4pYh1s':
+    if SHEET_ID:
         try:
             row = [
                 today,
                 str(level or ''),
                 str(round(660.0 - level, 2) if level else ''),
                 str(water_temp or ''),
+                str(osage_temp or ''),
                 str(wx.get('air_temp_f', '')),
                 str(wx.get('feels_like_f', '')),
                 str(wx.get('humidity', '')),
