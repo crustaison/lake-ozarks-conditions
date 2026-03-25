@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake of the Ozarks Conditions</title>
+<style>
+  :root {
+    --bg: #0a1628;
+    --surface: #0f2240;
+    --surface2: #152d52;
+    --border: #1e3a5f;
+    --text: #cce4ff;
+    --muted: #5a88b8;
+    --accent: #38bdf8;
+    --safe: #22c55e;
+    --warn: #f59e0b;
+    --danger: #ef4444;
+    --high: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 'Courier New', monospace; min-height: 100dvh; }
+
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  header h1 { font-size: 16px; font-weight: 700; color: var(--accent); }
+  .updated { font-size: 11px; color: var(--muted); }
+
+  main { max-width: 700px; margin: 0 auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 14px; }
+
+  /* LEVEL CARD */
+  .level-main { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+  .level-ft { font-size: 52px; font-weight: 700; line-height: 1; }
+  .level-unit { font-size: 16px; color: var(--muted); margin-bottom: 8px; }
+  .level-badge { font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge-normal { background: rgba(34,197,94,0.15); color: var(--safe); border: 1px solid rgba(34,197,94,0.3); }
+  .badge-low    { background: rgba(245,158,11,0.15); color: var(--warn); border: 1px solid rgba(245,158,11,0.3); }
+  .badge-verylow{ background: rgba(239,68,68,0.15);  color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+  .badge-high   { background: rgba(167,139,250,0.15);color: var(--high); border: 1px solid rgba(167,139,250,0.3); }
+  .level-bar-wrap { margin-top: 10px; }
+  .level-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .level-bar-track { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .level-bar-fill  { height: 100%; border-radius: 4px; background: var(--safe); transition: width 0.5s; }
+  .level-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* STATS GRID */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 700; }
+  .stat-unit  { font-size: 12px; color: var(--muted); }
+  .stat-sub   { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* FORECAST */
+  .forecast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .fc-day { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+  .fc-date  { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .fc-icon  { font-size: 22px; margin-bottom: 4px; }
+  .fc-high  { font-size: 18px; font-weight: 700; }
+  .fc-low   { font-size: 13px; color: var(--muted); }
+  .fc-wind  { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .no-data { color: var(--muted); font-size: 13px; text-align: center; padding: 20px; }
+
+  footer { text-align: center; font-size: 11px; color: var(--muted); padding: 20px; border-top: 1px solid var(--border); margin-top: 10px; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⛵ Lake of the Ozarks Conditions</h1>
+  <span class="updated" id="updated">Loading...</span>
+</header>
+
+<main>
+  <!-- LAKE LEVEL -->
+  <div class="card" id="level-card">
+    <div class="card-title">Lake Level</div>
+    <div class="no-data">Loading...</div>
+  </div>
+
+  <!-- WATER + AIR TEMPS -->
+  <div class="card">
+    <div class="card-title">Temperature</div>
+    <div class="stats" id="temp-stats">
+      <div class="no-data">Loading...</div>
+    </div>
+  </div>
+
+  <!-- WIND -->
+  <div class="card">
+    <div class="card-title">Wind Conditions</div>
+    <div class="stats" id="wind-stats">
+      <div class="no-data">Loading...</div>
+    </div>
+  </div>
+
+  <!-- 3-DAY FORECAST -->
+  <div class="card">
+    <div class="card-title">3-Day Forecast</div>
+    <div class="forecast" id="forecast">
+      <div class="no-data">Loading...</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Data: <a href="https://ozarks.uslakes.info/Level/" target="_blank">uslakes.info</a> ·
+  <a href="https://lakemonster.com/lake/MO/Lake-of-the-Ozarks-water-temperature-37" target="_blank">LakeMonster</a> ·
+  <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> ·
+  Updated daily by <a href="https://github.com/crustaison/lake-ozarks-conditions" target="_blank">Crusty</a>
+</footer>
+
+<script>
+const FULL_POOL = 660.0;
+const NORMAL_MIN = 655.0;  // typical operating floor
+
+const WX_ICONS = {
+  0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️',
+  45:'🌫️', 48:'🌫️',
+  51:'🌦️', 53:'🌦️', 55:'🌧️',
+  61:'🌧️', 63:'🌧️', 65:'🌧️',
+  71:'❄️', 73:'❄️', 75:'❄️',
+  80:'🌦️', 81:'🌧️', 82:'⛈️',
+  95:'⛈️', 96:'⛈️', 99:'⛈️',
+};
+
+const WIND_DIR = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+function windDir(deg) { return WIND_DIR[Math.round(deg / 22.5) % 16]; }
+
+function levelBadge(level) {
+  const diff = FULL_POOL - level;
+  if (level >= FULL_POOL)         return { cls: 'badge-high',    label: 'At Full Pool' };
+  if (diff <= 2)                  return { cls: 'badge-normal',  label: 'Normal' };
+  if (diff <= 5)                  return { cls: 'badge-low',     label: 'Low' };
+  return                                 { cls: 'badge-verylow', label: 'Very Low' };
+}
+
+function levelBarColor(level) {
+  const diff = FULL_POOL - level;
+  if (diff <= 2) return 'var(--safe)';
+  if (diff <= 5) return 'var(--warn)';
+  return 'var(--danger)';
+}
+
+async function load() {
+  try {
+    const resp = await fetch('conditions.json?v=' + Date.now());
+    if (!resp.ok) throw new Error('no data');
+    const d = await resp.json();
+    render(d);
+  } catch(e) {
+    document.getElementById('level-card').innerHTML = '<div class="card-title">Lake Level</div><div class="no-data">Could not load conditions data.</div>';
+  }
+}
+
+function render(d) {
+  const ts = new Date(d.updated);
+  document.getElementById('updated').textContent = 'Updated ' + ts.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) + ' at ' + ts.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+
+  const level = d.lake_level;
+  const badge = levelBadge(level);
+  const diff = (FULL_POOL - level).toFixed(2);
+  const pct = Math.min(100, Math.max(0, ((level - 650) / (FULL_POOL - 650)) * 100));
+
+  document.getElementById('level-card').innerHTML = `
+    <div class="card-title">Lake Level — Full Pool: ${FULL_POOL} ft MSL</div>
+    <div class="level-main">
+      <div>
+        <span class="level-ft" style="color:${levelBarColor(level)}">${level}</span>
+        <span class="level-unit"> ft MSL</span>
+      </div>
+      <span class="level-badge ${badge.cls}">${badge.label}</span>
+    </div>
+    <div class="level-bar-wrap">
+      <div class="level-bar-label"><span>650 ft</span><span>660 ft (full)</span></div>
+      <div class="level-bar-track"><div class="level-bar-fill" style="width:${pct}%;background:${levelBarColor(level)}"></div></div>
+    </div>
+    <div class="level-sub">${diff > 0 ? diff + ' ft below full pool' : 'At or above full pool'}</div>
+  `;
+
+  document.getElementById('temp-stats').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Water Temp</div>
+      <div class="stat-value">${d.water_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
+      <div class="stat-sub">${d.water_temp_f ? waterTempNote(d.water_temp_f) : 'No data'}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Air Temp</div>
+      <div class="stat-value">${d.air_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
+      <div class="stat-sub">Feels like ${d.feels_like_f ?? '—'}°F</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Humidity</div>
+      <div class="stat-value">${d.humidity ?? '—'}<span class="stat-unit">%</span></div>
+    </div>
+  `;
+
+  const gustTxt = d.wind_gusts_mph ? ` gusts ${d.wind_gusts_mph}` : '';
+  const windAdvisory = d.wind_speed_mph >= 20 ? '⚠️ Rough conditions' : d.wind_speed_mph >= 10 ? 'Moderate chop' : 'Calm';
+  document.getElementById('wind-stats').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Wind Speed</div>
+      <div class="stat-value">${d.wind_speed_mph ?? '—'}<span class="stat-unit"> mph</span></div>
+      <div class="stat-sub">${windAdvisory}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Gusts</div>
+      <div class="stat-value">${d.wind_gusts_mph ?? '—'}<span class="stat-unit"> mph</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Direction</div>
+      <div class="stat-value" style="font-size:20px">${d.wind_dir ?? '—'}</div>
+      <div class="stat-sub">${d.wind_deg != null ? d.wind_deg + '°' : ''}</div>
+    </div>
+  `;
+
+  if (d.forecast && d.forecast.length) {
+    document.getElementById('forecast').innerHTML = d.forecast.map(f => {
+      const dt = new Date(f.date + 'T12:00:00');
+      const dow = dt.toLocaleDateString('en-US',{weekday:'short'});
+      const mon = dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+      const icon = WX_ICONS[f.weather_code] || '🌡️';
+      return `<div class="fc-day">
+        <div class="fc-date">${dow} ${mon}</div>
+        <div class="fc-icon">${icon}</div>
+        <div class="fc-high">${f.high_f}°</div>
+        <div class="fc-low">${f.low_f}°</div>
+        <div class="fc-wind">💨 ${f.wind_max_mph} mph</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function waterTempNote(t) {
+  if (t < 50) return 'Cold — hypothermia risk';
+  if (t < 60) return 'Cool — limit exposure';
+  if (t < 70) return 'Comfortable';
+  if (t < 80) return 'Warm — ideal';
+  return 'Very warm';
+}
+
+load();
+</script>
+</body>
+</html>
