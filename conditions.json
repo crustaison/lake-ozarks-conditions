@@ -1,10 +1,10 @@
 {
-  "updated": "2026-06-09T08:00:01Z",
+  "updated": "2026-06-09T09:00:01Z",
   "lake_level": 659.8,
   "full_pool": 660.0,
   "below_full_pool": 0.2,
   "water_temp_f": 78,
-  "osage_temp_f": 72.3,
+  "osage_temp_f": 72.1,
   "air_temp_f": 75,
   "feels_like_f": 82,
   "humidity": 85,
