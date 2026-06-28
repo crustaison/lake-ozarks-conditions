@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T05:00:01Z",
+  "updated": "2026-06-28T06:00:01Z",
   "lake_level": 659.3,
   "full_pool": 660.0,
   "below_full_pool": 0.7,
@@ -11,13 +11,13 @@
   "wind_speed_mph": 6,
   "wind_gusts_mph": 15,
   "wind_dir": "SSE",
-  "wind_deg": 152,
+  "wind_deg": 158,
   "weather_code": 95,
   "forecast": [
     {
       "date": "2026-06-28",
       "high_f": 92,
-      "low_f": 74,
+      "low_f": 75,
       "wind_max_mph": 12,
       "precip_in": 0.0,
       "weather_code": 0
