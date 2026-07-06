@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-06T16:00:01Z",
+  "updated": "2026-07-06T17:00:01Z",
   "lake_level": 659.0,
   "full_pool": 660.0,
   "below_full_pool": 1.0,
   "water_temp_f": 82,
   "osage_temp_f": null,
-  "air_temp_f": 81,
+  "air_temp_f": 83,
   "feels_like_f": 89,
-  "humidity": 69,
+  "humidity": 63,
   "wind_speed_mph": 4,
   "wind_gusts_mph": 6,
-  "wind_dir": "NE",
-  "wind_deg": 49,
+  "wind_dir": "NNE",
+  "wind_deg": 28,
   "weather_code": 1,
   "forecast": [
     {
