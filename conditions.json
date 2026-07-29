@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-29T09:00:01Z",
+  "updated": "2026-07-29T10:00:01Z",
   "lake_level": 659.4,
   "full_pool": 660.0,
   "below_full_pool": 0.6,
@@ -10,13 +10,13 @@
   "humidity": 94,
   "wind_speed_mph": 2,
   "wind_gusts_mph": 4,
-  "wind_dir": "ENE",
-  "wind_deg": 63,
+  "wind_dir": "E",
+  "wind_deg": 82,
   "weather_code": 0,
   "forecast": [
     {
       "date": "2026-07-29",
-      "high_f": 97,
+      "high_f": 96,
       "low_f": 71,
       "wind_max_mph": 8,
       "precip_in": 0.0,
