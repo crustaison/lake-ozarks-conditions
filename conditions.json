@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-18T23:00:01Z",
+  "updated": "2026-08-19T00:00:01Z",
   "lake_level": 659.0,
   "full_pool": 660.0,
   "below_full_pool": 1.0,
   "water_temp_f": 85,
-  "osage_temp_f": 83.7,
-  "air_temp_f": 91,
-  "feels_like_f": 96,
-  "humidity": 45,
-  "wind_speed_mph": 3,
-  "wind_gusts_mph": 5,
-  "wind_dir": "E",
-  "wind_deg": 99,
-  "weather_code": 1,
+  "osage_temp_f": null,
+  "air_temp_f": 89,
+  "feels_like_f": 93,
+  "humidity": 46,
+  "wind_speed_mph": 5,
+  "wind_gusts_mph": 10,
+  "wind_dir": "S",
+  "wind_deg": 180,
+  "weather_code": 0,
   "forecast": [
     {
       "date": "2026-08-18",
@@ -25,16 +25,16 @@
     {
       "date": "2026-08-19",
       "high_f": 90,
-      "low_f": 73,
-      "wind_max_mph": 9,
-      "precip_in": 0.209,
+      "low_f": 71,
+      "wind_max_mph": 11,
+      "precip_in": 0.386,
       "weather_code": 0
     },
     {
       "date": "2026-08-20",
       "high_f": 93,
       "low_f": 67,
-      "wind_max_mph": 7,
+      "wind_max_mph": 9,
       "precip_in": 0.0,
       "weather_code": 0
     }
