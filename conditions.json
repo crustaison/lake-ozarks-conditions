@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22T10:00:01Z",
+  "updated": "2026-09-22T11:00:02Z",
   "lake_level": 658.0,
   "full_pool": 660.0,
   "below_full_pool": 2.0,
@@ -8,18 +8,18 @@
   "air_temp_f": 69,
   "feels_like_f": 73,
   "humidity": 89,
-  "wind_speed_mph": 4,
-  "wind_gusts_mph": 6,
-  "wind_dir": "NE",
-  "wind_deg": 43,
+  "wind_speed_mph": 2,
+  "wind_gusts_mph": 4,
+  "wind_dir": "NNE",
+  "wind_deg": 17,
   "weather_code": 3,
   "forecast": [
     {
       "date": "2026-09-22",
-      "high_f": 76,
+      "high_f": 77,
       "low_f": 63,
       "wind_max_mph": 9,
-      "precip_in": 0.063,
+      "precip_in": 0.024,
       "weather_code": 0
     },
     {
