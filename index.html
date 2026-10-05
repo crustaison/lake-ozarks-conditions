@@ -4,243 +4,252 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lake of the Ozarks Conditions</title>
+<meta name="description" content="Live Lake of the Ozarks conditions: lake level, water temperature, wind, Bagnell Dam releases and forecast. Updated hourly.">
+<meta property="og:title" content="Lake of the Ozarks Conditions">
+<meta property="og:description" content="Lake level, water temp, wind, dam releases and forecast — updated hourly.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f7fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #f3f7fb;
+    --surface: #ffffff;
+    --surface2: #eef3f9;
+    --border: #d5e0ec;
+    --text: #0f2240;
+    --muted: #4a6382;
+    --accent: #0369a1;
+    --safe: #15803d;
+    --warn: #b45309;
+    --danger: #b91c1c;
+    --high: #6d28d9;
+    --shadow: 0 1px 3px rgba(15,34,64,0.06);
+  }
+  :root[data-theme="dark"] {
     --bg: #0a1628;
     --surface: #0f2240;
     --surface2: #152d52;
     --border: #1e3a5f;
-    --text: #cce4ff;
-    --muted: #5a88b8;
+    --text: #e2efff;
+    --muted: #8fb0d6;
     --accent: #38bdf8;
     --safe: #22c55e;
     --warn: #f59e0b;
-    --danger: #ef4444;
+    --danger: #f87171;
     --high: #a78bfa;
+    --shadow: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1628;
+      --surface: #0f2240;
+      --surface2: #152d52;
+      --border: #1e3a5f;
+      --text: #e2efff;
+      --muted: #8fb0d6;
+      --accent: #38bdf8;
+      --safe: #22c55e;
+      --warn: #f59e0b;
+      --danger: #f87171;
+      --high: #a78bfa;
+      --shadow: none;
+    }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 'Courier New', monospace; min-height: 100dvh; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.4; min-height: 100dvh; }
+  .num { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; font-variant-numeric: tabular-nums; }
 
-  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  header h1 { font-size: 16px; font-weight: 700; color: var(--accent); }
-  .updated { font-size: 11px; color: var(--muted); }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; }
+  .header-inner { max-width: 1040px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  header h1 { font-size: 17px; font-weight: 700; color: var(--accent); }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .updated { font-size: 13px; color: var(--muted); }
+  .updated.stale { color: var(--warn); font-weight: 600; }
+  .theme-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; width: 34px; height: 34px; font-size: 16px; cursor: pointer; }
 
-  main { max-width: 700px; margin: 0 auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 16px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 820px) {
+    main { grid-template-columns: 1fr 1fr; }
+    .span-2 { grid-column: span 2; }
+  }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-  .card-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); min-width: 0; }
+  .card-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 12px; }
 
-  /* LEVEL CARD */
-  .level-main { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
-  .level-ft { font-size: 52px; font-weight: 700; line-height: 1; }
-  .level-unit { font-size: 16px; color: var(--muted); margin-bottom: 8px; }
-  .level-badge { font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .badge-normal { background: rgba(34,197,94,0.15); color: var(--safe); border: 1px solid rgba(34,197,94,0.3); }
-  .badge-low    { background: rgba(245,158,11,0.15); color: var(--warn); border: 1px solid rgba(245,158,11,0.3); }
-  .badge-verylow{ background: rgba(239,68,68,0.15);  color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
-  .badge-high   { background: rgba(167,139,250,0.15);color: var(--high); border: 1px solid rgba(167,139,250,0.3); }
-  .level-bar-wrap { margin-top: 10px; }
-  .level-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-  .level-bar-track { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
-  .level-bar-fill  { height: 100%; border-radius: 4px; background: var(--safe); transition: width 0.5s; }
-  .level-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  /* VERDICT */
+  .verdict { display: flex; align-items: center; gap: 14px; border-left: 6px solid var(--safe); }
+  .verdict.warn { border-left-color: var(--warn); }
+  .verdict.danger { border-left-color: var(--danger); }
+  .verdict-dot { font-size: 30px; line-height: 1; }
+  .verdict-head { font-size: 20px; font-weight: 700; }
+  .verdict-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
 
-  /* STATS GRID */
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-  .stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 6px; }
-  .stat-value { font-size: 26px; font-weight: 700; }
-  .stat-unit  { font-size: 12px; color: var(--muted); }
-  .stat-sub   { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  /* LEVEL */
+  .level-main { display: flex; align-items: baseline; gap: 10px 14px; flex-wrap: wrap; margin-bottom: 4px; }
+  .level-ft { font-size: 48px; font-weight: 700; line-height: 1; }
+  .level-unit { font-size: 15px; color: var(--muted); }
+  .trend { font-size: 14px; color: var(--muted); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid currentColor; }
+  .badge-normal  { color: var(--safe); }
+  .badge-low     { color: var(--warn); }
+  .badge-verylow { color: var(--danger); }
+  .badge-high    { color: var(--high); }
+  .level-bar { position: relative; margin: 26px 0 6px; }
+  .level-track { height: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+  .level-fill { height: 100%; transition: width 0.5s; }
+  .level-tick { position: absolute; top: -20px; bottom: -4px; width: 2px; background: var(--text); opacity: 0.7; }
+  .level-tick span { position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 11px; white-space: nowrap; color: var(--muted); }
+  .level-scale { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .level-sub { font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; min-width: 0; }
+  .stat-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 4px; }
+  .stat-value { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .stat-unit  { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .stat-sub   { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .wind-arrow { display: inline-block; font-size: 22px; line-height: 1; color: var(--accent); }
+
+  /* DAM FORECAST */
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 12px; }
+  .mini-table th, .mini-table td { padding: 6px 4px; text-align: right; border-top: 1px solid var(--border); }
+  .mini-table th:first-child, .mini-table td:first-child { text-align: left; color: var(--muted); font-weight: 500; }
+  .mini-table thead th { border-top: none; font-size: 12px; color: var(--muted); font-weight: 600; }
 
   /* FORECAST */
-  .forecast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .fc-day { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
-  .fc-date  { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-  .fc-icon  { font-size: 22px; margin-bottom: 4px; }
-  .fc-high  { font-size: 18px; font-weight: 700; }
-  .fc-low   { font-size: 13px; color: var(--muted); }
-  .fc-wind  { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .forecast { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+  .fc-day { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center; }
+  .fc-date  { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .fc-icon  { font-size: 26px; margin-bottom: 2px; }
+  .fc-temps { font-size: 17px; font-weight: 700; }
+  .fc-temps .lo { color: var(--muted); font-weight: 500; font-size: 14px; }
+  .fc-meta  { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
-  .no-data { color: var(--muted); font-size: 13px; text-align: center; padding: 20px; }
+  .no-data { color: var(--muted); font-size: 14px; text-align: center; padding: 16px; }
 
-  footer { text-align: center; font-size: 11px; color: var(--muted); padding: 20px; border-top: 1px solid var(--border); margin-top: 10px; }
+  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 20px 16px; border-top: 1px solid var(--border); margin-top: 10px; line-height: 1.7; }
   footer a { color: var(--muted); }
 </style>
+<script>
+  // Apply saved theme before paint
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 </head>
 <body>
 
 <header>
-  <h1>⛵ Lake of the Ozarks Conditions</h1>
-  <span class="updated" id="updated">Loading...</span>
+  <div class="header-inner">
+    <h1>⛵ Lake of the Ozarks Conditions</h1>
+    <div class="header-right">
+      <span class="updated" id="updated">Loading…</span>
+      <button class="theme-btn" id="theme-btn" aria-label="Toggle light/dark theme" title="Toggle theme">◐</button>
+    </div>
+  </div>
 </header>
 
 <main>
-  <!-- LAKE LEVEL -->
-  <div class="card" id="level-card">
+  <div class="card verdict span-2" id="verdict">
+    <div class="no-data">Loading…</div>
+  </div>
+
+  <div class="card span-2" id="level-card">
     <div class="card-title">Lake Level</div>
-    <div class="no-data">Loading...</div>
+    <div class="no-data">Loading…</div>
   </div>
 
-  <!-- WATER + AIR TEMPS -->
   <div class="card">
-    <div class="card-title">Temperature</div>
-    <div class="stats" id="temp-stats">
-      <div class="no-data">Loading...</div>
-    </div>
+    <div class="card-title">On the Water</div>
+    <div class="stats" id="water-stats"><div class="no-data">Loading…</div></div>
   </div>
 
-  <!-- WIND -->
   <div class="card">
-    <div class="card-title">Wind Conditions</div>
-    <div class="stats" id="wind-stats">
-      <div class="no-data">Loading...</div>
-    </div>
+    <div class="card-title">Weather</div>
+    <div class="stats" id="weather-stats"><div class="no-data">Loading…</div></div>
   </div>
 
-  <!-- 3-DAY FORECAST -->
-  <div class="card">
-    <div class="card-title">3-Day Forecast</div>
-    <div class="forecast" id="forecast">
-      <div class="no-data">Loading...</div>
-    </div>
+  <div class="card span-2">
+    <div class="card-title">Forecast</div>
+    <div class="forecast" id="forecast"><div class="no-data">Loading…</div></div>
+  </div>
+
+  <div class="card span-2" id="dam-card">
+    <div class="card-title">Bagnell Dam</div>
+    <div class="no-data">Loading…</div>
   </div>
 </main>
 
 <footer>
-  Data: <a href="https://ozarks.uslakes.info/Level/" target="_blank">uslakes.info</a> ·
-  <a href="https://lakemonster.com/lake/MO/Lake-of-the-Ozarks-water-temperature-37" target="_blank">LakeMonster</a> ·
-  <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> ·
-  Updated daily by <a href="https://github.com/crustaison/lake-ozarks-conditions" target="_blank">Crusty</a>
+  Data: <a href="https://www.ameren.com/property/lake-of-the-ozarks/reports" target="_blank" rel="noopener">Ameren Missouri</a> (level, water temp, release forecast) ·
+  <a href="https://waterdata.usgs.gov/monitoring-location/06926000/" target="_blank" rel="noopener">USGS 06926000</a> (dam outflow) ·
+  <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (weather)<br>
+  Seasonal target is an approximation of Ameren's lake level guide curve. Not for navigation or safety decisions.<br>
+  Updated hourly by <a href="https://github.com/crustaison/lake-ozarks-conditions" target="_blank" rel="noopener">Crusty</a>
 </footer>
 
 <script>
 const FULL_POOL = 660.0;
-const NORMAL_MIN = 655.0;  // typical operating floor
+const BAR_MIN = 650.0;
+const STALE_HOURS = 3;
 
-const WX_ICONS = {
-  0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️',
-  45:'🌫️', 48:'🌫️',
-  51:'🌦️', 53:'🌦️', 55:'🌧️',
-  61:'🌧️', 63:'🌧️', 65:'🌧️',
-  71:'❄️', 73:'❄️', 75:'❄️',
-  80:'🌦️', 81:'🌧️', 82:'⛈️',
-  95:'⛈️', 96:'⛈️', 99:'⛈️',
+// Approximate Ameren guide curve: [month (1-12), day, target ft]. Linear between points.
+const GUIDE_CURVE = [
+  [1, 1, 658.0], [2, 15, 654.0], [4, 1, 654.0], [5, 15, 659.0],
+  [9, 15, 659.0], [10, 31, 658.0], [12, 31, 658.0],
+];
+
+const WX = {
+  0:['☀️','Clear'], 1:['🌤️','Mostly clear'], 2:['⛅','Partly cloudy'], 3:['☁️','Overcast'],
+  45:['🌫️','Fog'], 48:['🌫️','Fog'],
+  51:['🌦️','Light drizzle'], 53:['🌦️','Drizzle'], 55:['🌧️','Heavy drizzle'],
+  56:['🌧️','Freezing drizzle'], 57:['🌧️','Freezing drizzle'],
+  61:['🌧️','Light rain'], 63:['🌧️','Rain'], 65:['🌧️','Heavy rain'],
+  66:['🌧️','Freezing rain'], 67:['🌧️','Freezing rain'],
+  71:['❄️','Light snow'], 73:['❄️','Snow'], 75:['❄️','Heavy snow'], 77:['❄️','Snow grains'],
+  80:['🌦️','Showers'], 81:['🌧️','Showers'], 82:['⛈️','Heavy showers'],
+  85:['🌨️','Snow showers'], 86:['🌨️','Snow showers'],
+  95:['⛈️','Thunderstorms'], 96:['⛈️','Thunderstorms, hail'], 99:['⛈️','Thunderstorms, hail'],
 };
+const wx = code => WX[code] || ['🌡️', 'Unknown'];
+const has = v => v !== null && v !== undefined;
+const show = (v, digits) => has(v) ? (digits != null ? Number(v).toFixed(digits) : v) : '—';
 
-const WIND_DIR = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-function windDir(deg) { return WIND_DIR[Math.round(deg / 22.5) % 16]; }
-
-function levelBadge(level) {
-  const diff = FULL_POOL - level;
-  if (level >= FULL_POOL)         return { cls: 'badge-high',    label: 'At Full Pool' };
-  if (diff <= 2)                  return { cls: 'badge-normal',  label: 'Normal' };
-  if (diff <= 5)                  return { cls: 'badge-low',     label: 'Low' };
-  return                                 { cls: 'badge-verylow', label: 'Very Low' };
+function dayOfYear(d) {
+  return Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 864e5);
 }
-
-function levelBarColor(level) {
-  const diff = FULL_POOL - level;
-  if (diff <= 2) return 'var(--safe)';
-  if (diff <= 5) return 'var(--warn)';
-  return 'var(--danger)';
-}
-
-async function load() {
-  try {
-    const resp = await fetch('conditions.json?v=' + Date.now());
-    if (!resp.ok) throw new Error('no data');
-    const d = await resp.json();
-    render(d);
-  } catch(e) {
-    document.getElementById('level-card').innerHTML = '<div class="card-title">Lake Level</div><div class="no-data">Could not load conditions data.</div>';
+function seasonalTarget(date) {
+  const doy = dayOfYear(date);
+  const pts = GUIDE_CURVE.map(([m, d, ft]) => [dayOfYear(new Date(date.getFullYear(), m - 1, d)), ft]);
+  for (let i = 1; i < pts.length; i++) {
+    const [d0, f0] = pts[i - 1], [d1, f1] = pts[i];
+    if (doy <= d1) return f0 + (f1 - f0) * (doy - d0) / (d1 - d0);
   }
+  return pts[pts.length - 1][1];
 }
 
-function render(d) {
-  const ts = new Date(d.updated);
-  document.getElementById('updated').textContent = 'Updated ' + ts.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) + ' at ' + ts.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+function levelStatus(level, target) {
+  if (level > FULL_POOL)    return { cls: 'badge-high',    color: 'var(--high)',   label: 'Above full pool' };
+  const diff = level - target;
+  if (diff > 1.5)           return { cls: 'badge-high',    color: 'var(--high)',   label: 'Above seasonal' };
+  if (diff >= -1.5)         return { cls: 'badge-normal',  color: 'var(--safe)',   label: 'Normal for season' };
+  if (diff >= -3)           return { cls: 'badge-low',     color: 'var(--warn)',   label: 'Below seasonal' };
+  return                           { cls: 'badge-verylow', color: 'var(--danger)', label: 'Well below seasonal' };
+}
 
-  const level = d.lake_level;
-  const badge = levelBadge(level);
-  const diff = (FULL_POOL - level).toFixed(2);
-  const pct = Math.min(100, Math.max(0, ((level - 650) / (FULL_POOL - 650)) * 100));
-
-  document.getElementById('level-card').innerHTML = `
-    <div class="card-title">Lake Level — Full Pool: ${FULL_POOL} ft MSL</div>
-    <div class="level-main">
-      <div>
-        <span class="level-ft" style="color:${levelBarColor(level)}">${level}</span>
-        <span class="level-unit"> ft MSL</span>
-      </div>
-      <span class="level-badge ${badge.cls}">${badge.label}</span>
-    </div>
-    <div class="level-bar-wrap">
-      <div class="level-bar-label"><span>650 ft</span><span>660 ft (full)</span></div>
-      <div class="level-bar-track"><div class="level-bar-fill" style="width:${pct}%;background:${levelBarColor(level)}"></div></div>
-    </div>
-    <div class="level-sub">${diff > 0 ? diff + ' ft below full pool' : 'At or above full pool'}</div>
-  `;
-
-  document.getElementById('temp-stats').innerHTML = `
-    <div class="stat">
-      <div class="stat-label">Surface Temp</div>
-      <div class="stat-value">${d.water_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
-      <div class="stat-sub">${d.water_temp_f ? waterTempNote(d.water_temp_f) : 'No data'}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Osage Below Dam</div>
-      <div class="stat-value">${d.osage_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
-      <div class="stat-sub">Deeper lake temp (USGS)</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Air Temp</div>
-      <div class="stat-value">${d.air_temp_f ?? '—'}<span class="stat-unit">°F</span></div>
-      <div class="stat-sub">Feels like ${d.feels_like_f ?? '—'}°F</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Humidity</div>
-      <div class="stat-value">${d.humidity ?? '—'}<span class="stat-unit">%</span></div>
-    </div>
-  `;
-
-  const gustTxt = d.wind_gusts_mph ? ` gusts ${d.wind_gusts_mph}` : '';
-  const windAdvisory = d.wind_speed_mph >= 20 ? '⚠️ Rough conditions' : d.wind_speed_mph >= 10 ? 'Moderate chop' : 'Calm';
-  document.getElementById('wind-stats').innerHTML = `
-    <div class="stat">
-      <div class="stat-label">Wind Speed</div>
-      <div class="stat-value">${d.wind_speed_mph ?? '—'}<span class="stat-unit"> mph</span></div>
-      <div class="stat-sub">${windAdvisory}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Gusts</div>
-      <div class="stat-value">${d.wind_gusts_mph ?? '—'}<span class="stat-unit"> mph</span></div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Direction</div>
-      <div class="stat-value" style="font-size:20px">${d.wind_dir ?? '—'}</div>
-      <div class="stat-sub">${d.wind_deg != null ? d.wind_deg + '°' : ''}</div>
-    </div>
-  `;
-
-  if (d.forecast && d.forecast.length) {
-    document.getElementById('forecast').innerHTML = d.forecast.map(f => {
-      const dt = new Date(f.date + 'T12:00:00');
-      const dow = dt.toLocaleDateString('en-US',{weekday:'short'});
-      const mon = dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
-      const icon = WX_ICONS[f.weather_code] || '🌡️';
-      return `<div class="fc-day">
-        <div class="fc-date">${dow} ${mon}</div>
-        <div class="fc-icon">${icon}</div>
-        <div class="fc-high">${f.high_f}°</div>
-        <div class="fc-low">${f.low_f}°</div>
-        <div class="fc-wind">💨 ${f.wind_max_mph} mph</div>
-      </div>`;
-    }).join('');
-  }
+function windNote(speed, gusts) {
+  if (!has(speed)) return { level: 0, text: 'No data' };
+  if (speed >= 20 || gusts >= 30) return { level: 2, text: 'Rough water' };
+  if (speed >= 12 || gusts >= 20) return { level: 1, text: 'Choppy' };
+  if (speed >= 7) return { level: 0, text: 'Light chop' };
+  return { level: 0, text: 'Calm' };
 }
 
 function waterTempNote(t) {
+  if (!has(t)) return 'No data';
   if (t < 50) return 'Cold — hypothermia risk';
   if (t < 60) return 'Cool — limit exposure';
   if (t < 70) return 'Comfortable';
@@ -248,7 +257,200 @@ function waterTempNote(t) {
   return 'Very warm';
 }
 
+function fmtTime(ts) {
+  return ts.toLocaleDateString('en-US', {month:'short', day:'numeric'}) + ', ' +
+         ts.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'});
+}
+
+function levelTrend(history, level) {
+  if (!history || history.length < 2 || !has(level)) return null;
+  const cutoff = Date.now() - 24 * 3600e3;
+  const old = history.find(h => new Date(h.t).getTime() >= cutoff);
+  if (!old || old === history[history.length - 1]) return null;
+  const hrs = Math.round((Date.now() - new Date(old.t).getTime()) / 3600e3);
+  return { change: level - old.level, hrs };
+}
+
+function setCard(id, title, body) {
+  document.getElementById(id).innerHTML = (title ? `<div class="card-title">${title}</div>` : '') + body;
+}
+
+async function load() {
+  try {
+    const resp = await fetch('conditions.json?v=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    render(await resp.json());
+  } catch (e) {
+    const msg = '<div class="no-data">Could not load conditions data. Try refreshing in a minute.</div>';
+    setCard('verdict', '', msg);
+    setCard('level-card', 'Lake Level', msg);
+    for (const id of ['water-stats', 'weather-stats', 'forecast']) document.getElementById(id).innerHTML = msg;
+    setCard('dam-card', 'Bagnell Dam', msg);
+    document.getElementById('updated').textContent = 'Data unavailable';
+  }
+}
+
+function render(d) {
+  // Header + staleness
+  const ts = new Date(d.updated);
+  const ageH = (Date.now() - ts.getTime()) / 3600e3;
+  const upd = document.getElementById('updated');
+  upd.textContent = (ageH > STALE_HOURS ? '⚠️ Data is ' + Math.round(ageH) + 'h old · ' : 'Updated ') + fmtTime(ts);
+  upd.classList.toggle('stale', ageH > STALE_HOURS);
+
+  const today = new Date();
+  const target = seasonalTarget(today);
+  const level = d.lake_level;
+  const wind = windNote(d.wind_speed_mph, d.wind_gusts_mph);
+  const todayFc = (d.forecast || [])[0];
+
+  // ---- Verdict
+  const issues = [];   // [severity, text]
+  if (wind.level === 2) issues.push([2, `rough water — wind ${d.wind_speed_mph} mph, gusts ${show(d.wind_gusts_mph)}`]);
+  else if (wind.level === 1) issues.push([1, `choppy — wind ${d.wind_speed_mph} mph, gusts ${show(d.wind_gusts_mph)}`]);
+  const curCode = d.weather_code;
+  if (curCode >= 95) issues.push([2, 'thunderstorms now']);
+  else if (todayFc && todayFc.weather_code >= 95) issues.push([1, 'storms possible today']);
+  else if (curCode >= 61 && curCode <= 67 || curCode >= 80 && curCode <= 82) issues.push([1, 'raining now']);
+  if (has(d.water_temp_f) && d.water_temp_f < 60) issues.push([1, `cold water (${d.water_temp_f}°F)`]);
+  if (ageH > STALE_HOURS) issues.push([1, 'data may be out of date']);
+  const sev = Math.max(0, ...issues.map(i => i[0]));
+  const head = sev === 2 ? 'Rough day — use caution' : sev === 1 ? 'Fair — watch conditions' : 'Good day on the water';
+  const dot = sev === 2 ? '🔴' : sev === 1 ? '🟡' : '🟢';
+  const parts = issues.length ? issues.map(i => i[1]) : [
+    wind.text.toLowerCase(),
+    has(d.water_temp_f) ? `${d.water_temp_f}°F water` : null,
+    has(d.air_temp_f) ? `${d.air_temp_f}°F air` : null,
+    has(curCode) ? wx(curCode)[1].toLowerCase() : null,
+  ].filter(Boolean);
+  const v = document.getElementById('verdict');
+  v.className = 'card verdict span-2' + (sev === 2 ? ' danger' : sev === 1 ? ' warn' : '');
+  v.innerHTML = `<div class="verdict-dot" aria-hidden="true">${dot}</div>
+    <div><div class="verdict-head">${head}</div>
+    <div class="verdict-sub">${parts.join(' · ').replace(/^./, c => c.toUpperCase())}</div></div>`;
+
+  // ---- Level
+  if (!has(level)) {
+    setCard('level-card', 'Lake Level', '<div class="no-data">Lake level unavailable right now (Ameren didn\'t respond).</div>');
+  } else {
+    const st = levelStatus(level, target);
+    const pct = x => Math.min(100, Math.max(0, (x - BAR_MIN) / (FULL_POOL - BAR_MIN) * 100));
+    const trend = levelTrend(d.level_history, level);
+    let trendTxt = '';
+    if (trend) {
+      const c = trend.change;
+      trendTxt = Math.abs(c) < 0.05 ? `→ steady over ${trend.hrs}h`
+               : `${c > 0 ? '↑' : '↓'} ${Math.abs(c).toFixed(1)} ft over ${trend.hrs}h`;
+    }
+    const below = FULL_POOL - level;
+    setCard('level-card', 'Lake Level', `
+      <div class="level-main">
+        <span class="level-ft num" style="color:${st.color}">${level.toFixed(1)}</span>
+        <span class="level-unit">ft MSL</span>
+        <span class="badge ${st.cls}">${st.label}</span>
+        ${trendTxt ? `<span class="trend">${trendTxt}</span>` : ''}
+      </div>
+      <div class="level-bar">
+        <div class="level-track"><div class="level-fill" style="width:${pct(level)}%;background:${st.color}"></div></div>
+        <div class="level-tick" style="left:calc(${pct(target)}% - 1px)"><span>target ${target.toFixed(1)}</span></div>
+      </div>
+      <div class="level-scale"><span>650 ft</span><span>660 ft full pool</span></div>
+      <div class="level-sub">${below > 0 ? below.toFixed(1) + ' ft below full pool' : (level - FULL_POOL).toFixed(1) + ' ft above full pool'} ·
+        seasonal target ≈ ${target.toFixed(1)} ft (${(level - target >= 0 ? '+' : '') + (level - target).toFixed(1)} ft)</div>
+    `);
+  }
+
+  // ---- On the water
+  const arrow = has(d.wind_deg)
+    ? `<span class="wind-arrow" style="transform:rotate(${(d.wind_deg + 180) % 360}deg)" aria-hidden="true">↑</span>` : '';
+  document.getElementById('water-stats').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Water Temp</div>
+      <div class="stat-value num">${show(d.water_temp_f)}<span class="stat-unit">°F</span></div>
+      <div class="stat-sub">${waterTempNote(d.water_temp_f)}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Wind</div>
+      <div class="stat-value num">${arrow}${show(d.wind_speed_mph)}<span class="stat-unit">mph</span></div>
+      <div class="stat-sub">${has(d.wind_dir) ? 'From ' + d.wind_dir + ' · ' : ''}${wind.text}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Gusts</div>
+      <div class="stat-value num">${show(d.wind_gusts_mph)}<span class="stat-unit">mph</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Dam Release</div>
+      <div class="stat-value num">${has(d.dam_release_cfs) ? d.dam_release_cfs.toLocaleString() : '—'}<span class="stat-unit">cfs</span></div>
+      <div class="stat-sub">Below Bagnell Dam</div>
+    </div>
+  `;
+
+  // ---- Weather
+  const [curIcon, curDesc] = wx(curCode);
+  document.getElementById('weather-stats').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Air Temp</div>
+      <div class="stat-value num">${show(d.air_temp_f)}<span class="stat-unit">°F</span></div>
+      <div class="stat-sub">Feels like ${show(d.feels_like_f)}°F</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Sky</div>
+      <div class="stat-value"><span aria-hidden="true">${has(curCode) ? curIcon : '—'}</span></div>
+      <div class="stat-sub">${has(curCode) ? curDesc : 'No data'}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Humidity</div>
+      <div class="stat-value num">${show(d.humidity)}<span class="stat-unit">%</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Rain Today</div>
+      <div class="stat-value num">${todayFc && has(todayFc.precip_chance) ? todayFc.precip_chance : '—'}<span class="stat-unit">%</span></div>
+      <div class="stat-sub">${todayFc && has(todayFc.precip_in) ? todayFc.precip_in.toFixed(2) + ' in expected' : ''}</div>
+    </div>
+  `;
+
+  // ---- Forecast
+  const fc = d.forecast || [];
+  document.getElementById('forecast').innerHTML = fc.length ? fc.map((f, i) => {
+    const dt = new Date(f.date + 'T12:00:00');
+    const label = i === 0 ? 'Today' : dt.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
+    const [icon, desc] = wx(f.weather_code);
+    const rain = has(f.precip_chance) ? `💧 ${f.precip_chance}%` : (f.precip_in ? `💧 ${f.precip_in.toFixed(2)} in` : '');
+    return `<div class="fc-day">
+      <div class="fc-date">${label}</div>
+      <div class="fc-icon" title="${desc}" aria-label="${desc}">${icon}</div>
+      <div class="fc-temps num">${f.high_f}° <span class="lo">${f.low_f}°</span></div>
+      <div class="fc-meta">💨 ${f.wind_max_mph} mph${rain ? ' · ' + rain : ''}</div>
+    </div>`;
+  }).join('') : '<div class="no-data">Forecast unavailable.</div>';
+
+  // ---- Dam
+  const af = d.ameren_forecast || [];
+  const damNow = has(d.dam_release_cfs)
+    ? `<div class="stat-value num">${d.dam_release_cfs.toLocaleString()}<span class="stat-unit">cfs now (USGS)</span></div>`
+    : '<div class="no-data">Current outflow unavailable.</div>';
+  const damTable = af.length ? `
+    <table class="mini-table num">
+      <thead><tr><th>Ameren forecast</th><th>Today</th><th>Tomorrow</th><th>Day 3</th></tr></thead>
+      <tbody>
+        <tr><td>Release (cfs)</td>${af.map(x => `<td>${has(x.release_cfs) ? x.release_cfs.toLocaleString() : '—'}</td>`).join('')}</tr>
+        <tr><td>Lake level (ft)</td>${af.map(x => `<td>${show(x.lake_level, 1)}</td>`).join('')}</tr>
+      </tbody>
+    </table>` : '';
+  setCard('dam-card', 'Bagnell Dam', damNow + damTable);
+}
+
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const root = document.documentElement;
+  const dark = root.dataset.theme
+    ? root.dataset.theme === 'dark'
+    : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+});
+
 load();
+setInterval(load, 15 * 60e3);
 </script>
 </body>
 </html>
