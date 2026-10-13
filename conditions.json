@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-13T08:00:01Z",
+  "updated": "2026-10-13T09:00:01Z",
   "lake_level": 657.4,
   "full_pool": 660.0,
   "below_full_pool": 2.6,
   "water_temp_f": 74,
-  "dam_release_cfs": 928,
+  "dam_release_cfs": 920,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-11T04:00:01Z",
-      "level": 657.4
-    },
     {
       "t": "2026-10-11T05:00:01Z",
       "level": 657.4
@@ -211,35 +207,39 @@
     {
       "t": "2026-10-13T08:00:01Z",
       "level": 657.4
+    },
+    {
+      "t": "2026-10-13T09:00:01Z",
+      "level": 657.4
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-13T08:00:01Z",
-  "air_temp_f": 70,
+  "weather_updated": "2026-10-13T09:00:01Z",
+  "air_temp_f": 68,
   "feels_like_f": 67,
-  "humidity": 47,
-  "wind_speed_mph": 5,
-  "wind_gusts_mph": 11,
+  "humidity": 56,
+  "wind_speed_mph": 4,
+  "wind_gusts_mph": 10,
   "wind_dir": "SSE",
-  "wind_deg": 156,
+  "wind_deg": 164,
   "weather_code": 0,
   "forecast": [
     {
       "date": "2026-10-13",
       "high_f": 94,
       "low_f": 66,
-      "wind_max_mph": 12,
+      "wind_max_mph": 11,
       "precip_in": 0.0,
-      "precip_chance": 10,
+      "precip_chance": 7,
       "weather_code": 3
     },
     {
       "date": "2026-10-14",
-      "high_f": 75,
-      "low_f": 68,
-      "wind_max_mph": 8,
-      "precip_in": 1.543,
-      "precip_chance": 77,
+      "high_f": 83,
+      "low_f": 69,
+      "wind_max_mph": 10,
+      "precip_in": 4.693,
+      "precip_chance": 61,
       "weather_code": 65
     },
     {
@@ -247,8 +247,8 @@
       "high_f": 85,
       "low_f": 65,
       "wind_max_mph": 15,
-      "precip_in": 0.433,
-      "precip_chance": 84,
+      "precip_in": 0.46,
+      "precip_chance": 80,
       "weather_code": 80
     },
     {
@@ -257,7 +257,7 @@
       "low_f": 44,
       "wind_max_mph": 15,
       "precip_in": 0.0,
-      "precip_chance": 35,
+      "precip_chance": 51,
       "weather_code": 3
     }
   ]
