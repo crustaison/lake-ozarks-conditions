@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-14T08:00:01Z",
+  "updated": "2026-10-14T09:00:01Z",
   "lake_level": 657.4,
   "full_pool": 660.0,
   "below_full_pool": 2.6,
   "water_temp_f": 74,
-  "dam_release_cfs": 2080,
+  "dam_release_cfs": 1860,
   "ameren_forecast": [
     {
       "release_cfs": 3000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-12T04:00:01Z",
-      "level": 657.4
-    },
     {
       "t": "2026-10-12T05:00:01Z",
       "level": 657.4
@@ -211,45 +207,49 @@
     {
       "t": "2026-10-14T08:00:01Z",
       "level": 657.4
+    },
+    {
+      "t": "2026-10-14T09:00:01Z",
+      "level": 657.4
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-14T08:00:01Z",
-  "air_temp_f": 75,
-  "feels_like_f": 79,
-  "humidity": 85,
-  "wind_speed_mph": 9,
-  "wind_gusts_mph": 18,
-  "wind_dir": "NW",
-  "wind_deg": 305,
+  "weather_updated": "2026-10-14T09:00:01Z",
+  "air_temp_f": 72,
+  "feels_like_f": 78,
+  "humidity": 89,
+  "wind_speed_mph": 2,
+  "wind_gusts_mph": 3,
+  "wind_dir": "W",
+  "wind_deg": 265,
   "weather_code": 3,
   "forecast": [
     {
       "date": "2026-10-14",
       "high_f": 81,
       "low_f": 70,
-      "wind_max_mph": 9,
-      "precip_in": 0.673,
-      "precip_chance": 84,
+      "wind_max_mph": 11,
+      "precip_in": 0.816,
+      "precip_chance": 86,
       "weather_code": 65
     },
     {
       "date": "2026-10-15",
       "high_f": 78,
-      "low_f": 60,
-      "wind_max_mph": 13,
-      "precip_in": 0.118,
-      "precip_chance": 77,
-      "weather_code": 61
+      "low_f": 58,
+      "wind_max_mph": 14,
+      "precip_in": 1.607,
+      "precip_chance": 62,
+      "weather_code": 65
     },
     {
       "date": "2026-10-16",
-      "high_f": 60,
+      "high_f": 59,
       "low_f": 41,
       "wind_max_mph": 16,
-      "precip_in": 0.031,
-      "precip_chance": 77,
-      "weather_code": 53
+      "precip_in": 0.029,
+      "precip_chance": 62,
+      "weather_code": 61
     },
     {
       "date": "2026-10-17",
@@ -257,7 +257,7 @@
       "low_f": 39,
       "wind_max_mph": 5,
       "precip_in": 0.0,
-      "precip_chance": 1,
+      "precip_chance": 0,
       "weather_code": 1
     }
   ]
