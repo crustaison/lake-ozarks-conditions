@@ -1,29 +1,25 @@
 {
-  "updated": "2026-10-14T13:00:01Z",
-  "lake_level": 657.4,
+  "updated": "2026-10-14T14:00:01Z",
+  "lake_level": 657.6,
   "full_pool": 660.0,
-  "below_full_pool": 2.6,
+  "below_full_pool": 2.4,
   "water_temp_f": 74,
-  "dam_release_cfs": 1270,
+  "dam_release_cfs": 1260,
   "ameren_forecast": [
     {
-      "release_cfs": 3000.0,
-      "lake_level": 657.5
+      "release_cfs": 1000.0,
+      "lake_level": 657.7
     },
     {
       "release_cfs": 1000.0,
-      "lake_level": 657.6
+      "lake_level": 657.7
     },
     {
       "release_cfs": 1000.0,
-      "lake_level": 657.8
+      "lake_level": 657.7
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-12T09:00:01Z",
-      "level": 657.4
-    },
     {
       "t": "2026-10-12T10:00:01Z",
       "level": 657.4
@@ -211,17 +207,21 @@
     {
       "t": "2026-10-14T13:00:01Z",
       "level": 657.4
+    },
+    {
+      "t": "2026-10-14T14:00:01Z",
+      "level": 657.6
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-14T13:00:01Z",
+  "weather_updated": "2026-10-14T14:00:01Z",
   "air_temp_f": 69,
-  "feels_like_f": 75,
-  "humidity": 95,
-  "wind_speed_mph": 3,
+  "feels_like_f": 73,
+  "humidity": 92,
+  "wind_speed_mph": 5,
   "wind_gusts_mph": 7,
-  "wind_dir": "SE",
-  "wind_deg": 126,
+  "wind_dir": "NNW",
+  "wind_deg": 333,
   "weather_code": 3,
   "forecast": [
     {
@@ -229,16 +229,16 @@
       "high_f": 81,
       "low_f": 67,
       "wind_max_mph": 8,
-      "precip_in": 0.283,
+      "precip_in": 0.358,
       "precip_chance": 93,
       "weather_code": 63
     },
     {
       "date": "2026-10-15",
       "high_f": 78,
-      "low_f": 57,
+      "low_f": 59,
       "wind_max_mph": 14,
-      "precip_in": 1.61,
+      "precip_in": 1.581,
       "precip_chance": 63,
       "weather_code": 65
     },
@@ -247,7 +247,7 @@
       "high_f": 57,
       "low_f": 46,
       "wind_max_mph": 15,
-      "precip_in": 0.003,
+      "precip_in": 0.032,
       "precip_chance": 62,
       "weather_code": 61
     },
