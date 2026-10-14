@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-13T23:00:01Z",
+  "updated": "2026-10-14T00:00:01Z",
   "lake_level": 657.4,
   "full_pool": 660.0,
   "below_full_pool": 2.6,
   "water_temp_f": 74,
-  "dam_release_cfs": 8730,
+  "dam_release_cfs": 12400,
   "ameren_forecast": [
     {
       "release_cfs": 3000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-11T19:00:01Z",
-      "level": 657.4
-    },
     {
       "t": "2026-10-11T20:00:01Z",
       "level": 657.4
@@ -211,17 +207,21 @@
     {
       "t": "2026-10-13T23:00:01Z",
       "level": 657.4
+    },
+    {
+      "t": "2026-10-14T00:00:01Z",
+      "level": 657.4
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-13T23:00:01Z",
-  "air_temp_f": 93,
-  "feels_like_f": 96,
-  "humidity": 43,
-  "wind_speed_mph": 7,
-  "wind_gusts_mph": 13,
-  "wind_dir": "SW",
-  "wind_deg": 216,
+  "weather_updated": "2026-10-14T00:00:01Z",
+  "air_temp_f": 89,
+  "feels_like_f": 92,
+  "humidity": 46,
+  "wind_speed_mph": 5,
+  "wind_gusts_mph": 10,
+  "wind_dir": "SSW",
+  "wind_deg": 196,
   "weather_code": 0,
   "forecast": [
     {
@@ -230,35 +230,35 @@
       "low_f": 65,
       "wind_max_mph": 10,
       "precip_in": 0.0,
-      "precip_chance": 4,
+      "precip_chance": 3,
       "weather_code": 1
     },
     {
       "date": "2026-10-14",
-      "high_f": 82,
+      "high_f": 81,
       "low_f": 69,
-      "wind_max_mph": 11,
-      "precip_in": 0.461,
-      "precip_chance": 74,
-      "weather_code": 80
+      "wind_max_mph": 10,
+      "precip_in": 0.953,
+      "precip_chance": 80,
+      "weather_code": 82
     },
     {
       "date": "2026-10-15",
-      "high_f": 86,
-      "low_f": 62,
-      "wind_max_mph": 12,
-      "precip_in": 0.244,
+      "high_f": 84,
+      "low_f": 60,
+      "wind_max_mph": 11,
+      "precip_in": 0.295,
       "precip_chance": 75,
-      "weather_code": 80
+      "weather_code": 81
     },
     {
       "date": "2026-10-16",
-      "high_f": 62,
-      "low_f": 42,
-      "wind_max_mph": 15,
-      "precip_in": 0.004,
+      "high_f": 60,
+      "low_f": 43,
+      "wind_max_mph": 16,
+      "precip_in": 0.0,
       "precip_chance": 64,
-      "weather_code": 53
+      "weather_code": 51
     }
   ]
 }
