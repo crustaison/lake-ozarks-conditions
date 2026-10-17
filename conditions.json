@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-17T02:00:01Z",
+  "updated": "2026-10-17T03:00:01Z",
   "lake_level": 657.7,
   "full_pool": 660.0,
   "below_full_pool": 2.3,
   "water_temp_f": 74,
-  "dam_release_cfs": 782,
+  "dam_release_cfs": 774,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-15T03:00:01Z",
-      "level": 657.6
-    },
     {
       "t": "2026-10-15T04:00:01Z",
       "level": 657.6
@@ -211,18 +207,22 @@
     {
       "t": "2026-10-17T02:00:01Z",
       "level": 657.7
+    },
+    {
+      "t": "2026-10-17T03:00:01Z",
+      "level": 657.7
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-17T02:00:01Z",
-  "air_temp_f": 51,
-  "feels_like_f": 44,
-  "humidity": 63,
-  "wind_speed_mph": 11,
-  "wind_gusts_mph": 25,
+  "weather_updated": "2026-10-17T03:00:01Z",
+  "air_temp_f": 48,
+  "feels_like_f": 42,
+  "humidity": 66,
+  "wind_speed_mph": 8,
+  "wind_gusts_mph": 22,
   "wind_dir": "NNW",
-  "wind_deg": 336,
-  "weather_code": 3,
+  "wind_deg": 328,
+  "weather_code": 0,
   "forecast": [
     {
       "date": "2026-10-16",
@@ -237,7 +237,7 @@
       "date": "2026-10-17",
       "high_f": 61,
       "low_f": 39,
-      "wind_max_mph": 6,
+      "wind_max_mph": 7,
       "precip_in": 0.0,
       "precip_chance": 0,
       "weather_code": 0
