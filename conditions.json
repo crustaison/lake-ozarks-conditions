@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20T02:00:01Z",
+  "updated": "2026-10-20T03:00:01Z",
   "lake_level": 657.7,
   "full_pool": 660.0,
   "below_full_pool": 2.3,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-18T03:00:01Z",
-      "level": 657.7
-    },
     {
       "t": "2026-10-18T04:00:02Z",
       "level": 657.7
@@ -211,18 +207,22 @@
     {
       "t": "2026-10-20T02:00:01Z",
       "level": 657.7
+    },
+    {
+      "t": "2026-10-20T03:00:01Z",
+      "level": 657.7
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-20T02:00:01Z",
-  "air_temp_f": 61,
-  "feels_like_f": 56,
-  "humidity": 38,
-  "wind_speed_mph": 3,
-  "wind_gusts_mph": 6,
+  "weather_updated": "2026-10-20T03:00:01Z",
+  "air_temp_f": 57,
+  "feels_like_f": 52,
+  "humidity": 53,
+  "wind_speed_mph": 4,
+  "wind_gusts_mph": 8,
   "wind_dir": "ESE",
-  "wind_deg": 116,
-  "weather_code": 3,
+  "wind_deg": 114,
+  "weather_code": 0,
   "forecast": [
     {
       "date": "2026-10-19",
@@ -244,8 +244,8 @@
     },
     {
       "date": "2026-10-21",
-      "high_f": 77,
-      "low_f": 48,
+      "high_f": 79,
+      "low_f": 53,
       "wind_max_mph": 5,
       "precip_in": 0.0,
       "precip_chance": 2,
