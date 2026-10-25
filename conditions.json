@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T07:00:01Z",
+  "updated": "2026-10-25T08:00:01Z",
   "lake_level": null,
   "full_pool": 660.0,
   "below_full_pool": null,
@@ -214,19 +214,19 @@
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-25T07:00:01Z",
-  "air_temp_f": 56,
-  "feels_like_f": 52,
-  "humidity": 60,
+  "weather_updated": "2026-10-25T08:00:01Z",
+  "air_temp_f": 54,
+  "feels_like_f": 50,
+  "humidity": 62,
   "wind_speed_mph": 4,
-  "wind_gusts_mph": 11,
+  "wind_gusts_mph": 10,
   "wind_dir": "SE",
-  "wind_deg": 127,
+  "wind_deg": 124,
   "weather_code": 3,
   "forecast": [
     {
       "date": "2026-10-25",
-      "high_f": 81,
+      "high_f": 80,
       "low_f": 50,
       "wind_max_mph": 6,
       "precip_in": 0.0,
