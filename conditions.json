@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-29T20:00:02Z",
+  "updated": "2026-10-29T21:00:01Z",
   "lake_level": 657.7,
   "full_pool": 660.0,
   "below_full_pool": 2.3,
   "water_temp_f": 70,
-  "dam_release_cfs": 782,
+  "dam_release_cfs": 822,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-27T21:00:01Z",
-      "level": 657.7
-    },
     {
       "t": "2026-10-27T22:00:01Z",
       "level": 657.7
@@ -211,18 +207,22 @@
     {
       "t": "2026-10-29T20:00:02Z",
       "level": 657.7
+    },
+    {
+      "t": "2026-10-29T21:00:01Z",
+      "level": 657.7
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-29T20:00:02Z",
+  "weather_updated": "2026-10-29T21:00:01Z",
   "air_temp_f": 82,
-  "feels_like_f": 84,
+  "feels_like_f": 85,
   "humidity": 49,
-  "wind_speed_mph": 3,
-  "wind_gusts_mph": 6,
-  "wind_dir": "WSW",
-  "wind_deg": 255,
-  "weather_code": 1,
+  "wind_speed_mph": 2,
+  "wind_gusts_mph": 8,
+  "wind_dir": "SW",
+  "wind_deg": 232,
+  "weather_code": 0,
   "forecast": [
     {
       "date": "2026-10-29",
@@ -230,25 +230,25 @@
       "low_f": 58,
       "wind_max_mph": 9,
       "precip_in": 0.0,
-      "precip_chance": 11,
+      "precip_chance": 7,
       "weather_code": 3
     },
     {
       "date": "2026-10-30",
-      "high_f": 83,
-      "low_f": 58,
+      "high_f": 81,
+      "low_f": 59,
       "wind_max_mph": 8,
-      "precip_in": 0.004,
-      "precip_chance": 4,
+      "precip_in": 0.008,
+      "precip_chance": 3,
       "weather_code": 51
     },
     {
       "date": "2026-10-31",
-      "high_f": 68,
+      "high_f": 71,
       "low_f": 60,
       "wind_max_mph": 7,
-      "precip_in": 0.016,
-      "precip_chance": 39,
+      "precip_in": 0.008,
+      "precip_chance": 38,
       "weather_code": 51
     },
     {
@@ -257,7 +257,7 @@
       "low_f": 59,
       "wind_max_mph": 5,
       "precip_in": 0.0,
-      "precip_chance": 39,
+      "precip_chance": 38,
       "weather_code": 3
     }
   ]
