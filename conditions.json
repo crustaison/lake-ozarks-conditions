@@ -1,10 +1,10 @@
 {
-  "updated": "2026-10-30T14:00:01Z",
+  "updated": "2026-10-30T15:00:01Z",
   "lake_level": 657.7,
   "full_pool": 660.0,
   "below_full_pool": 2.3,
   "water_temp_f": 70,
-  "dam_release_cfs": 846,
+  "dam_release_cfs": 838,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-10-28T15:00:01Z",
-      "level": 657.7
-    },
     {
       "t": "2026-10-28T16:00:01Z",
       "level": 657.7
@@ -211,17 +207,21 @@
     {
       "t": "2026-10-30T14:00:01Z",
       "level": 657.7
+    },
+    {
+      "t": "2026-10-30T15:00:01Z",
+      "level": 657.7
     }
   ],
   "errors": [],
-  "weather_updated": "2026-10-30T14:00:01Z",
-  "air_temp_f": 62,
-  "feels_like_f": 63,
-  "humidity": 85,
+  "weather_updated": "2026-10-30T15:00:01Z",
+  "air_temp_f": 67,
+  "feels_like_f": 69,
+  "humidity": 75,
   "wind_speed_mph": 3,
-  "wind_gusts_mph": 7,
-  "wind_dir": "SE",
-  "wind_deg": 141,
+  "wind_gusts_mph": 5,
+  "wind_dir": "ESE",
+  "wind_deg": 116,
   "weather_code": 3,
   "forecast": [
     {
@@ -230,26 +230,26 @@
       "low_f": 57,
       "wind_max_mph": 6,
       "precip_in": 0.0,
-      "precip_chance": 3,
+      "precip_chance": 5,
       "weather_code": 3
     },
     {
       "date": "2026-10-31",
-      "high_f": 76,
+      "high_f": 79,
       "low_f": 59,
-      "wind_max_mph": 9,
+      "wind_max_mph": 10,
       "precip_in": 0.0,
-      "precip_chance": 19,
+      "precip_chance": 14,
       "weather_code": 3
     },
     {
       "date": "2026-11-01",
-      "high_f": 66,
-      "low_f": 58,
+      "high_f": 68,
+      "low_f": 59,
       "wind_max_mph": 6,
-      "precip_in": 0.307,
-      "precip_chance": 36,
-      "weather_code": 63
+      "precip_in": 0.117,
+      "precip_chance": 40,
+      "weather_code": 61
     },
     {
       "date": "2026-11-02",
@@ -257,7 +257,7 @@
       "low_f": 59,
       "wind_max_mph": 17,
       "precip_in": 0.039,
-      "precip_chance": 54,
+      "precip_chance": 61,
       "weather_code": 53
     }
   ]
