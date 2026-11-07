@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T08:00:01Z",
+  "updated": "2026-11-07T09:00:01Z",
   "lake_level": 657.6,
   "full_pool": 660.0,
   "below_full_pool": 2.4,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-11-05T09:00:01Z",
-      "level": 657.6
-    },
     {
       "t": "2026-11-05T10:00:01Z",
       "level": 657.6
@@ -211,23 +207,27 @@
     {
       "t": "2026-11-07T08:00:01Z",
       "level": 657.6
+    },
+    {
+      "t": "2026-11-07T09:00:01Z",
+      "level": 657.6
     }
   ],
   "errors": [],
-  "weather_updated": "2026-11-07T08:00:01Z",
-  "air_temp_f": 45,
+  "weather_updated": "2026-11-07T09:00:01Z",
+  "air_temp_f": 44,
   "feels_like_f": 41,
-  "humidity": 76,
+  "humidity": 84,
   "wind_speed_mph": 3,
   "wind_gusts_mph": 4,
-  "wind_dir": "NE",
-  "wind_deg": 37,
+  "wind_dir": "ENE",
+  "wind_deg": 61,
   "weather_code": 3,
   "forecast": [
     {
       "date": "2026-11-07",
       "high_f": 53,
-      "low_f": 37,
+      "low_f": 38,
       "wind_max_mph": 5,
       "precip_in": 0.0,
       "precip_chance": 0,
@@ -240,7 +240,7 @@
       "wind_max_mph": 7,
       "precip_in": 0.0,
       "precip_chance": 0,
-      "weather_code": 3
+      "weather_code": 0
     },
     {
       "date": "2026-11-09",
@@ -257,7 +257,7 @@
       "low_f": 49,
       "wind_max_mph": 7,
       "precip_in": 0.0,
-      "precip_chance": 1,
+      "precip_chance": 2,
       "weather_code": 3
     }
   ]
