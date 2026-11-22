@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T18:00:00Z",
+  "updated": "2026-11-22T19:00:01Z",
   "lake_level": 657.3,
   "full_pool": 660.0,
   "below_full_pool": 2.7,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-11-20T19:00:00Z",
-      "level": 657.3
-    },
     {
       "t": "2026-11-20T20:00:01Z",
       "level": 657.3
@@ -211,17 +207,21 @@
     {
       "t": "2026-11-22T18:00:00Z",
       "level": 657.3
+    },
+    {
+      "t": "2026-11-22T19:00:01Z",
+      "level": 657.3
     }
   ],
   "errors": [],
-  "weather_updated": "2026-11-22T18:00:00Z",
+  "weather_updated": "2026-11-22T19:00:01Z",
   "air_temp_f": 46,
   "feels_like_f": 40,
-  "humidity": 90,
+  "humidity": 88,
   "wind_speed_mph": 11,
-  "wind_gusts_mph": 22,
+  "wind_gusts_mph": 23,
   "wind_dir": "NNW",
-  "wind_deg": 344,
+  "wind_deg": 340,
   "weather_code": 3,
   "forecast": [
     {
