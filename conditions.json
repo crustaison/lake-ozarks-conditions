@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-23T23:00:01Z",
+  "updated": "2026-11-24T00:00:01Z",
   "lake_level": 657.2,
   "full_pool": 660.0,
   "below_full_pool": 2.8,
   "water_temp_f": 65,
-  "dam_release_cfs": 1020,
+  "dam_release_cfs": 1030,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-11-22T00:00:00Z",
-      "level": 657.3
-    },
     {
       "t": "2026-11-22T01:00:01Z",
       "level": 657.3
@@ -211,23 +207,27 @@
     {
       "t": "2026-11-23T23:00:01Z",
       "level": 657.2
+    },
+    {
+      "t": "2026-11-24T00:00:01Z",
+      "level": 657.2
     }
   ],
   "errors": [],
-  "weather_updated": "2026-11-23T23:00:01Z",
-  "air_temp_f": 40,
-  "feels_like_f": 33,
-  "humidity": 56,
-  "wind_speed_mph": 6,
+  "weather_updated": "2026-11-24T00:00:01Z",
+  "air_temp_f": 38,
+  "feels_like_f": 31,
+  "humidity": 62,
+  "wind_speed_mph": 5,
   "wind_gusts_mph": 14,
   "wind_dir": "N",
-  "wind_deg": 356,
+  "wind_deg": 355,
   "weather_code": 0,
   "forecast": [
     {
       "date": "2026-11-23",
       "high_f": 46,
-      "low_f": 29,
+      "low_f": 30,
       "wind_max_mph": 9,
       "precip_in": 0.0,
       "precip_chance": 0,
@@ -237,28 +237,28 @@
       "date": "2026-11-24",
       "high_f": 38,
       "low_f": 24,
-      "wind_max_mph": 7,
+      "wind_max_mph": 6,
       "precip_in": 0.0,
       "precip_chance": 0,
       "weather_code": 3
     },
     {
       "date": "2026-11-25",
-      "high_f": 42,
+      "high_f": 46,
       "low_f": 22,
-      "wind_max_mph": 9,
-      "precip_in": 0.0,
+      "wind_max_mph": 7,
+      "precip_in": 0.016,
       "precip_chance": 5,
-      "weather_code": 3
+      "weather_code": 71
     },
     {
       "date": "2026-11-26",
-      "high_f": 39,
-      "low_f": 28,
-      "wind_max_mph": 12,
-      "precip_in": 0.102,
+      "high_f": 45,
+      "low_f": 27,
+      "wind_max_mph": 10,
+      "precip_in": 0.0,
       "precip_chance": 19,
-      "weather_code": 73
+      "weather_code": 3
     }
   ]
 }
