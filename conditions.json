@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-28T06:00:01Z",
+  "updated": "2026-11-28T07:00:00Z",
   "lake_level": 657.2,
   "full_pool": 660.0,
   "below_full_pool": 2.8,
   "water_temp_f": 65,
-  "dam_release_cfs": 879,
+  "dam_release_cfs": null,
   "ameren_forecast": [
     {
       "release_cfs": 1000.0,
@@ -20,10 +20,6 @@
     }
   ],
   "level_history": [
-    {
-      "t": "2026-11-26T07:00:01Z",
-      "level": 657.2
-    },
     {
       "t": "2026-11-26T08:00:01Z",
       "level": 657.2
@@ -211,17 +207,23 @@
     {
       "t": "2026-11-28T06:00:01Z",
       "level": 657.2
+    },
+    {
+      "t": "2026-11-28T07:00:00Z",
+      "level": 657.2
     }
   ],
-  "errors": [],
-  "weather_updated": "2026-11-28T06:00:01Z",
+  "errors": [
+    "dam_release: <urlopen error _ssl.c:983: The handshake operation timed out>"
+  ],
+  "weather_updated": "2026-11-28T07:00:00Z",
   "air_temp_f": 38,
   "feels_like_f": 32,
-  "humidity": 73,
+  "humidity": 71,
   "wind_speed_mph": 5,
-  "wind_gusts_mph": 12,
-  "wind_dir": "SE",
-  "wind_deg": 130,
+  "wind_gusts_mph": 13,
+  "wind_dir": "SSE",
+  "wind_deg": 158,
   "weather_code": 3,
   "forecast": [
     {
